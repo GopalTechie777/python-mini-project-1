@@ -1,0 +1,50 @@
+def run_quiz(questions):
+    score = 0
+    for q in questions:
+        print(f"\n{q['que']}")
+        
+        for i in range(len(q['options'])):
+            print(f"{i + 1}. {q['options'][i]}")
+
+        valid_input = False
+        while not valid_input:
+            user_input = input(f"\nChoose an option between 1 and {len(q['options'])}: ")
+
+            if user_input.isdigit():
+                user_answer = int(user_input)
+                
+                if 1 <= user_answer <= len(q['options']):
+                    valid_input = True
+                    if q['options'][user_answer - 1] == q['answer']:
+                        print("Correct!")
+                        score += 1
+                    else:
+                        print(f"Wrong! The correct answer is: {q['answer']}")
+                else:
+                    print(f"Please enter a number between 1 and {len(q['options'])}.")
+            else:
+                print("Invalid input! Please enter a valid number.")
+
+    print(f"\nYour final score is {score} out of {len(questions)}.")
+
+questions = [
+    {
+        "que": "What is the capital of India?",
+        "options": ["Indore", "Delhi", "Hyderabad", "Banglore"],
+        "answer": "Delhi"
+    },
+    
+    {
+        "que": "Which planet is known as the Red Planet?",
+        "options": ["Earth", "Mars", "Jupiter", "Saturn"],
+        "answer": "Mars"
+    },
+
+    {
+        "que": "What is the largest ocean on Earth?",
+        "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+        "answer": "Pacific Ocean"
+    },
+]
+
+run_quiz(questions)
